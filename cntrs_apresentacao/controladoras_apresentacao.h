@@ -6,47 +6,48 @@
 #include "../include/interfaces.h"
 
 using namespace std;
-    class CntrApresentacaoControle{
-        private:
-            IApresentacaoAutenticacao *cntrApresentacaoAutenticacao;
-            IApresentacaoDesenvolvedor *cntrApresentacaoDesenvolvedor;
-            IApresentacaoTestes * CntrApresentacaoTestes;
-            Matricula matricula;
-        public:
-        void executar();
-        void setCntrApresentacaoAutenticacao(IApresentacaoAutenticacao*);
-        void setCntrApresentacaoDesenvolvedor(IApresentacaoDesenvolvedor*);
-        void setCntrApresentacaoTestes(IApresentacaoTestes*);
 
-    };
-
-    class CntrApresentacacaoAutenticacao:public IApresentacaoAutenticacao{
-        private:
-        IServicoAutenticacao *cntrSerivoAutenticacao;
-        void autenticar();
-        public:
-        bool autenticar(Matricula*);
-        void setCntrServicoAutenticacao(IServicoAutenticacao*);
-    };
+class CntrApresentacaoControle {
+private:
+    IApresentacaoAutenticacao* cntrApresentacaoAutenticacao;
+    IApresentacaoDesenvolvedor* cntrApresentacaoDesenvolvedor;
+    IApresentacaoTestes* cntrApresentacaoTestes;
+    Matricula matricula;
+    void executarAutenticado();
 
 
-    class CntrApresentacacaoDesenvolvedor:public IApresentacaoDesenvolvedor{
-        private:
-        IServicoDesenvolvedor *cntrSerivoDesenvolverdor;
-        void autenticar();
-        public:
-        void executar(Matricula*);
-        void cadastrar();
-        void setCntrServicoDesenvolvedor(IServicoDesenvolvedor*);
-    };
+public:
+    void executar();
+    void setCntrApresentacaoAutenticacao(IApresentacaoAutenticacao*);
+    void setCntrApresentacaoDesenvolvedor(IApresentacaoDesenvolvedor*);
+    void setCntrApresentacaoTestes(IApresentacaoTestes*);
+};
 
-    class CntrApresentacacaoTestes:public IApresentacaoTestes{
-        private:
-        IServicoTestes *cntrSerivoDesenvolvedor;
-        void autenticar();
-        public:
-        void executar(Matricula*);
-        void setCntrServicoTestes(IServicoTestes*);
-    };
+class CntrApresentacaoAutenticacao : public IApresentacaoAutenticacao {
+private:
+    IServicoAutenticacao* cntrServicoAutenticacao;
+
+public:
+    bool autenticar(Matricula*);
+    void setCntrServicoAutenticacao(IServicoAutenticacao*);
+};
+
+class CntrApresentacaoDesenvolvedor : public IApresentacaoDesenvolvedor {
+private:
+    IServicoDesenvolvedor* cntrServicoDesenvolvedor;
+public:
+    void executar(Matricula*);
+    void cadastrar();
+    void setCntrServicoDesenvolvedor(IServicoDesenvolvedor*);
+};
+
+class CntrApresentacaoTestes : public IApresentacaoTestes {
+private:
+    IServicoTestes* cntrServicoTestes;
+
+public:
+    void executar(Matricula*);
+    void setCntrServicoTestes(IServicoTestes*);
+};
 
 #endif
